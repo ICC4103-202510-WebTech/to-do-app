@@ -1,0 +1,13 @@
+<h1>Mis Proyectos</h1>
+<%= link_to "Nuevo", new_project_path, class: "btn btn-primary" %>
+<ul>
+    <% @projects.each do |project| %>
+        <li><%= link_to project.name, project_path(project) %>
+        | <%= link_to "Editar", edit_project_path(project) %>
+        | <%= link_to "Eliminar", project_path(project), data: {
+            turbo_method: :delete,
+            turbo_confirm: "Estás seguro de eliminar el proyecto?"
+        } %>
+        </li>
+    <% end %>
+</ul>

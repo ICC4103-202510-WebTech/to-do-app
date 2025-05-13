@@ -1,0 +1,8 @@
+<%= form_with model: @project do |form|%>
+    <div class="mb-3 col-6">
+        <%= form.label :name, "Nombre", class: "form-label" %>
+        <%= form.text_field :name, placeholder: "Nombre del Proyecto", class: "form-control" %>
+    </div>
+    <%= link_to "Cancelar", projects_path, class: "btn btn-secondary" %>
+    <%= form.submit "Guardar", class: "btn btn-primary" %>
+<% end %>
