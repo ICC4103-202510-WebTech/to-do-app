@@ -1,0 +1,17 @@
+<%= form_with model: @task do |form| %>
+    <div class="mb-3 col-6">
+        <%= form.label :name, "Nombre", class: "form-label" %>
+        <%= form.text_field :name, class: "form-control", placeholder: "Nombre de la Tarea" %>
+    </div>
+    <div class="mb-3 col-6">
+        <%= form.label :description, "Descripción", class: "form-label" %>
+        <%= form.text_field :description, class: "form-control", placeholder: "Descripción de la Tarea" %>
+    </div>
+    <div class="mb-3 col-6">
+        <%= form.label :project_id, class: "form-label" %>
+        <%= form.select :project_id, @projects %>
+    </div>
+
+    <%= link_to "Cancelar", tasks_path, class: "btn btn-secondary" %>
+    <%= form.submit "Guardar", class: "btn btn-primary" %>
+<% end %>

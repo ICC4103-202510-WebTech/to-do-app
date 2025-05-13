@@ -1,4 +1,6 @@
 class Project < ApplicationRecord
+  has_many :tasks
+
   validates :name, presence: true
 
   before_validation :strip_name
