@@ -1,2 +1,10 @@
 <h1>Nombre del Proyecto</h1>
+<%= link_to "Agregar Tarea", new_project_task_path(@project), class: "btn btn-primary"%>
 <h2><%= @project.name %></h2>
+
+<h4>Tareas del proyecto</h4>
+<ul>
+    <% @tasks.each do |task| %>
+        <li><%= task.name %></li>
+    <% end %>
+</ul>
