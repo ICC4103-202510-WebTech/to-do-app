@@ -7,6 +7,7 @@ module Projects
 
     def create
       @task = @project.tasks.new task_params
+      @task.user = current_user
       if @task.save
         redirect_to project_path(@project)
       else

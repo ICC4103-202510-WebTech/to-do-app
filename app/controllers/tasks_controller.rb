@@ -1,11 +1,15 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [ :show, :edit, :update, :destroy ]
   before_action :set_projects, only: [ :new, :edit ]
+  authorize_resource
+
   def index
     @tasks = Task.all
+    # authorize! :index, Task
   end
 
   def show
+    # authorize! :show, @task
   end
 
   def new
@@ -15,6 +19,7 @@ class TasksController < ApplicationController
 
   def create
     task = Task.new task_params
+    task.user = current_user
     if task.save
       redirect_to tasks_path(task)
     else

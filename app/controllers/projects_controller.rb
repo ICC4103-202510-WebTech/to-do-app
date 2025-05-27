@@ -1,7 +1,8 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [ :show, :edit, :update, :destroy ]
   def index
-    @projects = Project.all
+    @projects = Project.accessible_by(current_ability)
+    # authorize! :index, @projects
   end
 
   def show
@@ -14,6 +15,7 @@ class ProjectsController < ApplicationController
 
   def create
     project = Project.new project_params
+    project.user = current_user
     if project.save
       redirect_to projects_path
     else
