@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: todo_app
+      POSTGRES_DB: todo_app_production
+    volumes:
+      - ./pg_data:/var/lib/postgresql/data
+  web:
+    build: .
+    command: bin/rails server -b 0.0.0.0
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      TODO_APP_DATABASE_PASSWORD: password
+      SECRET_KEY_BASE: a2c09bcc97024c114d8f86bf82e3f8d02c7fb42743069f0a3541c122e56470315e3ec55b77901c7e1a8fe6f21dacccf58f77df0d4abd441a15fe7afe64739448
